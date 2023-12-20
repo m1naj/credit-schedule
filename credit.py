@@ -2,21 +2,21 @@ from datetime import datetime, timedelta, date
 from pprint import pprint
 from tabulate import tabulate
 
+def calculate_next_month(date):
+    date_obj = datetime.strptime(date, "%Y-%m-%d")
+    next_month = date_obj + timedelta(days=31)
+    return next_month.strftime("%Y-%m-%d")
+
+def calculate_monthly_payment(amount, percent, period, i):
+    monthly_payment = (amount / period) + ((amount - (amount / period) * (i - 1)) / 100) * (percent / 12)
+    return monthly_payment
+
 def calculate_loan(amount, percent, period):
     if amount <= 0:
         raise ValueError("Amount must be a positive number")
 
     today = date.today()
     timetoday = today.strftime('%Y-%m-%d')
-
-    def calculate_next_month(date):
-        date_obj = datetime.strptime(date, "%Y-%m-%d")
-        next_month = date_obj + timedelta(days=31)
-        return next_month.strftime("%Y-%m-%d")
-
-    def calculate_monthly_payment(amount, percent, period, i):
-        monthly_payment = (amount / period) + ((amount - (amount / period) * (i - 1)) / 100) * (percent / 12)
-        return monthly_payment
 
     payment_schedule = []
     total_payment = 0
