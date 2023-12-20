@@ -34,3 +34,43 @@ def test_calculate_loan_negative_amount():
         calculate_loan(amount, percent, period)
     
     assert str(e.value) == "Amount must be a positive number"
+
+def test_calculate_loan_zero_percent():
+    amount = 10000
+    percent = 0
+    period = 12
+
+    with pytest.raises(ValueError) as e:
+        calculate_loan(amount, percent, period)
+    
+    assert str(e.value) == "Percent must be a positive number"
+
+def test_calculate_loan_negative_percent():
+    amount = 10000
+    percent = -5
+    period = 12
+
+    with pytest.raises(ValueError) as e:
+        calculate_loan(amount, percent, period)
+    
+    assert str(e.value) == "Percent must be a positive number"
+
+def test_calculate_loan_zero_period():
+    amount = 10000
+    percent = 5
+    period = 0
+
+    with pytest.raises(ValueError) as e:
+        calculate_loan(amount, percent, period)
+    
+    assert str(e.value) == "Period must be a positive number"
+
+def test_calculate_loan_negative_period():
+    amount = 10000
+    percent = 5
+    period = -12
+
+    with pytest.raises(ValueError) as e:
+        calculate_loan(amount, percent, period)
+    
+    assert str(e.value) == "Period must be a positive number"

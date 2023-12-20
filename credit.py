@@ -14,6 +14,10 @@ def calculate_monthly_payment(amount, percent, period, i):
 def calculate_loan(amount, percent, period):
     if amount <= 0:
         raise ValueError("Amount must be a positive number")
+    elif percent <= 0:
+        raise ValueError("Percent must be a positive number")
+    elif period <= 0:
+        raise ValueError("Period must be a positive number")
 
     today = date.today()
     timetoday = today.strftime('%Y-%m-%d')
