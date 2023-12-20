@@ -12,11 +12,18 @@ def calculate_monthly_payment(amount, percent, period, i):
     return monthly_payment
 
 def calculate_loan(amount, percent, period):
+    if not isinstance(amount, (int, float)):
+        raise ValueError("Amount must be a number")
+    if not isinstance(percent, (int, float)):
+        raise ValueError("Percent must be a number")
+    if not isinstance(period, int):
+        raise ValueError("Period must be an integer")
+    
     if amount <= 0:
         raise ValueError("Amount must be a positive number")
-    elif percent <= 0:
+    if percent <= 0:
         raise ValueError("Percent must be a positive number")
-    elif period <= 0:
+    if period <= 0:
         raise ValueError("Period must be a positive number")
 
     today = date.today()
